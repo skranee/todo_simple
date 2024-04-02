@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useContext} from 'react';
+import MainWindow from "./todoList/mainWindow";
+import Dropdown from "./todoList/todosDropdown/dropdown";
+import {observer} from "mobx-react-lite";
+import {Context} from "./index";
 
 function App() {
+    const {globalStore} = useContext(Context);
+    const clear = (): void => {
+        const empty: string[] = [];
+        globalStore.setToDos(empty);
+    }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className='background'>
+        <MainWindow />
+        <Dropdown />
+        <button
+            className='btnSubmit'
+            onClick={clear}
+            style={{height: '5%'}}
         >
-          Learn React
-        </a>
-      </header>
+            Clear
+        </button>
     </div>
   );
 }
 
-export default App;
+export default observer(App);
