@@ -1,5 +1,4 @@
 import React, {useContext, useEffect, useState} from "react";
-import { FaRegFileAlt } from "react-icons/fa";
 import {Context} from "../index";
 import {observer} from "mobx-react-lite";
 
